@@ -12,5 +12,5 @@ const root = (
     </BrowserRouter>
   </Provider>
 )
-console.log(store)
+
 ReactDOM.render(root, document.getElementById('root'))

@@ -12,8 +12,6 @@ export const QuizCheckAnswer = (answersUser: {
     ).answers[answersUser[key]]
     const isCorrectAnswer = chooseUserAnswer.isCorrect
     quantityСorrectAnswer += isCorrectAnswer
-    console.log('Выбранные ответ', chooseUserAnswer)
   }
-  console.log('Количество правильных ответов', quantityСorrectAnswer)
   return quantityСorrectAnswer
 }

@@ -20,7 +20,6 @@ export const Quiz = () => {
     dispatch(FinishQuiz())
     QuizCheckAnswer(answers)
     setQuantity(QuizCheckAnswer(answers))
-    console.log('Количество правильных ответов', quantityСorrectAnswer)
   }
   //пангинация
   const [currentPage, setCurrentPage] = useState(1)
