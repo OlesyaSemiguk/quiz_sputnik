@@ -12,9 +12,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ChooseAnswer, CurrentQuestion } from 'reducers/reposReducer'
 import { store } from 'reducers/store'
 import { RootState } from 'reducers/store'
-export const QuizCheckAnswer = (answersUser: { [key: number]: number }) => {
-  console.log(answersUser)
+export const QuizCheckAnswer = (answersUser: {
+  [key: number]: number
+}): number => {
   let quantityСorrectAnswer = 0
+
   for (let key in answersUser) {
     let numQuestion = Number(key)
     let chooseUserAnswer = questionsData.find(
@@ -25,5 +27,7 @@ export const QuizCheckAnswer = (answersUser: { [key: number]: number }) => {
     console.log('Выбранные ответ', chooseUserAnswer)
   }
   console.log('Количество правильных ответов', quantityСorrectAnswer)
+  return quantityСorrectAnswer
+
   console.log('Ответов', questionsData)
 }
