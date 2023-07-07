@@ -1,14 +1,14 @@
 import { QuestionBlock } from 'components/QuestionBlock/QuestionBlock'
 import { questionsData } from 'data/question'
-import { Button, Space, Modal } from 'antd'
+import { Button, Space } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { FinishQuiz } from 'reducers/reposReducer'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
-import './quiz.scss'
 import { Pagination } from 'antd'
 import type { PaginationProps } from 'antd'
+import './quiz.scss'
 
 export const Quiz = () => {
   const dispatch = useDispatch()
@@ -33,11 +33,8 @@ export const Quiz = () => {
     lastQuestionIndex,
   )
   const onChange: PaginationProps['onChange'] = page => {
-    console.log(page)
     setCurrentPage(page)
   }
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
-  console.log(Math.ceil(questionsData.length / questionPerPage))
 
   return (
     <div className="quiz">
@@ -56,7 +53,7 @@ export const Quiz = () => {
           Проверить ответы
         </Button>
         <h3 className={isFinish ? 'result_active' : 'result'}>
-          Количество правильных ответов - {quantityСorrectAnswer}
+          Правильных ответов {quantityСorrectAnswer} из {questionsData.length}
         </h3>
         <Pagination
           defaultCurrent={1}

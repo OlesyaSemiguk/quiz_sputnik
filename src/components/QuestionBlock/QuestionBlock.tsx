@@ -8,7 +8,9 @@ import {
   DeleteAnswer,
 } from 'reducers/reposReducer'
 import { RootState } from 'reducers/store'
-const { Title, Paragraph, Text, Link } = Typography
+
+const { Title } = Typography
+
 interface QuestionBlockProps {
   question: Question
 }

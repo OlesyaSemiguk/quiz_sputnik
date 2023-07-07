@@ -43,9 +43,9 @@ export const questionsData: Question[] = [
     questionText: 'Столица Перу?',
     answers: [
       { textAnswer: 'Берлин', isCorrect: 0 },
-      { textAnswer: 'Варшава', isCorrect: 1 },
+      { textAnswer: 'Варшава', isCorrect: 0 },
       { textAnswer: 'Дели', isCorrect: 0 },
-      { textAnswer: 'Лима', isCorrect: 0 },
+      { textAnswer: 'Лима', isCorrect: 1 },
     ],
   },
   {
