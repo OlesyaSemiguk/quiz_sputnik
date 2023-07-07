@@ -1,6 +1,7 @@
-const CHECKING_ANSWER = 'CHECKING_ANSWER'
+const CHOOSE_ANSWER = 'CHECKING_ANSWER'
 const CURRENT_QUESTION = 'CURRENT_QUESTION'
 const FINISH_QUIZ = 'FINISH_QUIZ'
+const DELETE_ANSWER = 'DELETE_ANSWER'
 export interface Quiz {
   currentQuestion: number
   answers: { [key: number]: number }
@@ -19,15 +20,25 @@ const reposReducer = (state = defaultQuizState, action: UserAction): Quiz => {
         ...state,
         currentQuestion: action.payload,
       }
-    case CHECKING_ANSWER:
+    case DELETE_ANSWER: {
+      let answersObj = state.answers
+      delete answersObj[state.currentQuestion]
+      console.log(state.answers)
+      console.log(answersObj)
       return {
         ...state,
-        answers: { ...state.answers, [state.currentQuestion]: action.payload },
+        answers: { ...answersObj },
       }
+    }
     case FINISH_QUIZ:
       return {
         ...state,
         isFinish: true,
+      }
+    case CHOOSE_ANSWER:
+      return {
+        ...state,
+        answers: { ...state.answers, [state.currentQuestion]: action.payload },
       }
     default:
       return state
@@ -53,8 +64,15 @@ export const FinishQuiz = (): UserAction => {
 
 export const ChooseAnswer = (answerIndex: number): UserAction => {
   return {
-    type: CHECKING_ANSWER,
+    type: CHOOSE_ANSWER,
     payload: answerIndex,
   }
 }
+export const DeleteAnswer = (questionId: number): UserAction => {
+  return {
+    type: DELETE_ANSWER,
+    payload: questionId,
+  }
+}
+
 export default reposReducer

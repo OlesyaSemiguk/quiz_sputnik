@@ -8,6 +8,7 @@ import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
 import { SmileOutlined } from '@ant-design/icons'
 import { Typography } from 'antd'
+import './quiz.scss'
 
 export const Quiz = () => {
   const dispatch = useDispatch()
@@ -21,7 +22,6 @@ export const Quiz = () => {
     console.log('Количество правильных ответов', quantityСorrectAnswer)
   }
   const isFinish = useSelector((state: RootState) => state.store.isFinish)
-  const { Title } = Typography
 
   return (
     <div className="quiz">
@@ -39,7 +39,7 @@ export const Quiz = () => {
       >
         Проверить ответы
       </Button>
-      <h3 className="quiz">
+      <h3 className={isFinish ? 'result_active' : 'result'}>
         Количество правильных ответов - {quantityСorrectAnswer}
       </h3>
     </div>
