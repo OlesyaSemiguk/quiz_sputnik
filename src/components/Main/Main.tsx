@@ -1,8 +1,7 @@
-import { QuestionBlock } from 'components/QuestionBlock/QuestionBlock'
-import { questionsData } from 'data/question'
 import React from 'react'
-const { Header, Content, Footer } = Layout
-import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import { Quiz } from 'components/Quiz/Quiz'
+const { Content } = Layout
+import { Layout, theme } from 'antd'
 export const Main = () => {
   const {
     token: { colorBgContainer },
@@ -13,11 +12,7 @@ export const Main = () => {
         className="site-layout-content"
         style={{ background: colorBgContainer }}
       >
-        <div className="main">
-          {questionsData.map(questionData => (
-            <QuestionBlock question={questionData} key={questionData.id} />
-          ))}
-        </div>
+        <Quiz />
       </div>
     </Content>
   )

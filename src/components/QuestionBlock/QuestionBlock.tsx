@@ -2,9 +2,9 @@ import { Question } from 'data/question'
 import React from 'react'
 import { Typography, Checkbox } from 'antd'
 import type { CheckboxChangeEvent } from 'antd/es/checkbox'
-import { useDispatch } from 'react-redux/es/exports'
-import { CheckingAnswer } from 'reducers/reposReducer'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { ChooseAnswer, CurrentQuestion } from 'reducers/reposReducer'
+import { RootState } from 'reducers/store'
 const { Title, Paragraph, Text, Link } = Typography
 interface QuestionBlockProps {
   question: Question
@@ -15,9 +15,12 @@ const onChange = (e: CheckboxChangeEvent) => {
 
 export const QuestionBlock = ({ question }: QuestionBlockProps) => {
   const dispatch = useDispatch()
-  function onCheckboxClick(answer: number) {
-    dispatch(CheckingAnswer(answer))
+  const isFinish = useSelector((state: RootState) => state.store.isFinish)
+  function onCheckboxClick(questionId: number, answerIndex: number) {
+    dispatch(CurrentQuestion(questionId))
+    dispatch(ChooseAnswer(answerIndex))
   }
+
   return (
     <div className="question-block" key="{question.id}">
       <Title level={3}>{question.questionText}</Title>
@@ -26,7 +29,8 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
           <div className="answer" key={index}>
             <Checkbox
               onChange={onChange}
-              onClick={() => onCheckboxClick(answers.correct)}
+              onClick={() => onCheckboxClick(question.id, index)}
+              disabled={isFinish ? true : false}
             >
               {answers.textAnswer}
             </Checkbox>
