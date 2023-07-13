@@ -23,8 +23,7 @@ const reposReducer = (state = defaultQuizState, action: UserAction): Quiz => {
     case DELETE_ANSWER: {
       let answersObj = state.answers
       delete answersObj[state.currentQuestion]
-      console.log(state.answers)
-      console.log(answersObj)
+
       return {
         ...state,
         answers: { ...answersObj },

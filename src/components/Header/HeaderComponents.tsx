@@ -3,9 +3,9 @@ import { Layout } from 'antd'
 import { Typography } from 'antd'
 
 import './HeaderComponents.scss'
-const { Title, Paragraph, Text, Link } = Typography
+const { Title } = Typography
 
-const { Header, Content, Footer } = Layout
+const { Header } = Layout
 
 export const HeaderComponents = () => {
   return (

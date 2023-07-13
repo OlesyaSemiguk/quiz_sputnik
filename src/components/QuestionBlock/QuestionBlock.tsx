@@ -39,7 +39,7 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
             <Checkbox
               onClick={() => onCheckboxClick(question.id, index)}
               checked={checked(question.id, index)}
-              disabled={isFinish ? true : false}
+              disabled={isFinish}
               className={String(index)}
             >
               {answers.textAnswer}
