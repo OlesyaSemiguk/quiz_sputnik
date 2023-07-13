@@ -1,13 +1,10 @@
 "# quiz_sputnik"
 
-## Install libraries
-
+Install libraries
 To install libraries run:
 
-### `npm install`
-
-## Run project
-
+npm install
+Run project
 In the project directory, you can run:
 
-### `npm start`
+npm start
