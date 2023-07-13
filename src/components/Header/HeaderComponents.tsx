@@ -16,7 +16,7 @@ export const HeaderComponents = () => {
       }}
     >
       <div className="demo-logo" />
-      <Title className="tit" level={3}>
+      <Title className="title" level={3}>
         QUIZ
       </Title>{' '}
     </Header>

@@ -4,20 +4,8 @@ import { Main } from 'components/Main/Main'
 import React from 'react'
 import { Layout } from 'antd'
 import { ConfigProvider } from 'antd'
+import { BrowserRouter } from 'react-router-dom'
+import AppRouter from 'components/AppRouter'
 export function App() {
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#006d75',
-        },
-      }}
-    >
-      <Layout className="layout">
-        <HeaderComponents />
-        <Main />
-        <FooterComponents />
-      </Layout>
-    </ConfigProvider>
-  )
+  return <AppRouter />
 }
