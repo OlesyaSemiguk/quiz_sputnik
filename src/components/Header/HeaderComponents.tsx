@@ -1,8 +1,7 @@
 import React from 'react'
 import { Layout } from 'antd'
 import { Typography } from 'antd'
-
-import './HeaderComponents.scss'
+import { LOGIN_ROUTE } from 'utils/consts'
 const { Title } = Typography
 
 const { Header } = Layout
@@ -16,9 +15,11 @@ export const HeaderComponents = () => {
       }}
     >
       <div className="demo-logo" />
-      <Title className="title" level={3}>
-        QUIZ
-      </Title>{' '}
+      <a href={LOGIN_ROUTE}>
+        <Title style={{ color: 'white' }} level={3}>
+          QUIZ
+        </Title>
+      </a>
     </Header>
   )
 }
