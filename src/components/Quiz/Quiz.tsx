@@ -1,31 +1,32 @@
 import { QuestionBlock } from 'components/QuestionBlock/QuestionBlock'
 import { questionsData } from 'data/question'
-import { Button, Col, Space, Statistic } from 'antd'
+import { Button, Space, Statistic } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
-import { FinishQuiz } from 'reducers/quizReducer'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
 import { Pagination } from 'antd'
-import type { CountdownProps, PaginationProps } from 'antd'
+import type { PaginationProps } from 'antd'
 import './quiz.scss'
-import Countdown from 'antd/es/statistic/Countdown'
+import { FinishQuiz } from 'reducers/quiz/quizActions'
 
 export const Quiz = () => {
   const dispatch = useDispatch()
+  const { Countdown } = Statistic
   const answers = useSelector((state: RootState) => state.stateQuiz.answers)
   const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
   //проверка ответов
   const [quantityСorrectAnswer, setQuantity] = useState(0)
+  const [deadline, setDeadline] = useState(Date.now() + 1000 * 60 * 5)
   function CheckAnswerButton() {
     dispatch(FinishQuiz())
     QuizCheckAnswer(answers)
     setQuantity(QuizCheckAnswer(answers))
+    setDeadline(Date.now())
   }
   //пангинация
   const [currentPage, setCurrentPage] = useState(1)
   const [questionPerPage] = useState(5)
-
   const lastQuestionIndex = currentPage * questionPerPage
   const firstQuestionIndex = lastQuestionIndex - questionPerPage
   const currentQuestion = questionsData.slice(
@@ -35,20 +36,14 @@ export const Quiz = () => {
   const onChange: PaginationProps['onChange'] = page => {
     setCurrentPage(page)
   }
-  const { Countdown } = Statistic
-
-  const deadline = Date.now() + 1000 * 60 * 0.5 // Dayjs is also OK
 
   return (
     <div className="quiz">
       <Space direction="vertical" size="middle">
-        <Col span={12}>
-          <Countdown
-            title="Таймер"
-            value={deadline}
-            onFinish={CheckAnswerButton}
-          />
-        </Col>
+        <div className="timer">
+          <div>Таймер</div>
+          <Countdown value={deadline} onFinish={CheckAnswerButton} />
+        </div>
         <div className="quiz_question">
           {currentQuestion.map(questionData => (
             <QuestionBlock question={questionData} key={questionData.id} />

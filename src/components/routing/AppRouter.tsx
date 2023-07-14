@@ -1,7 +1,5 @@
 import React from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { authRoutes, publicRoutes } from './routes'
-import { useAuth } from 'components/hooks/use-auth'
+import { Routes, Route } from 'react-router-dom'
 import QuizPage from 'pages/QuizPage'
 import NotFoundPage from 'pages/NotFoundPage'
 import { AuthPage } from 'pages/AuthPage'
@@ -13,9 +11,8 @@ import {
   REGISTRATION_ROUTE,
   START_ROUTE,
 } from 'utils/consts'
+
 const AppRouter = () => {
-  const { isAuth } = useAuth()
-  console.log(isAuth === true)
   return (
     <Routes>
       <Route

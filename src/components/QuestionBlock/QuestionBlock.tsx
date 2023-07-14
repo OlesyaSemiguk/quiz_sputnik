@@ -2,12 +2,12 @@ import { Question } from 'data/question'
 import React from 'react'
 import { Typography, Checkbox } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'reducers/store'
 import {
   ChooseAnswer,
   CurrentQuestion,
   DeleteAnswer,
-} from 'reducers/quizReducer'
-import { RootState } from 'reducers/store'
+} from 'reducers/quiz/quizActions'
 
 const { Title } = Typography
 
@@ -30,22 +30,28 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
     if (answers[questionId] === answerIndex) return true
     else return false
   }
+  const isQuention = !!question.answers.length
+
   return (
     <div className="question-block" key="{question.id}">
       <Title level={3}>{question.questionText}</Title>
       <div className="question-answers">
-        {question.answers.map((answers, index) => (
-          <div className="answer" key={index}>
-            <Checkbox
-              onClick={() => onCheckboxClick(question.id, index)}
-              checked={checked(question.id, index)}
-              disabled={isFinish}
-              className={String(index)}
-            >
-              {answers.textAnswer}
-            </Checkbox>
-          </div>
-        ))}
+        {question.answers.map((answers, index) =>
+          isQuention ? (
+            <div className="answer" key={index}>
+              <Checkbox
+                onClick={() => onCheckboxClick(question.id, index)}
+                checked={checked(question.id, index)}
+                disabled={isFinish}
+                className={String(index)}
+              >
+                {answers.textAnswer}
+              </Checkbox>
+            </div>
+          ) : (
+            <div>Ошибка сервера, нет ответов</div>
+          ),
+        )}
       </div>
     </div>
   )

@@ -1,5 +1,7 @@
-const SET_USER = 'SET_USER'
-const REMOVE_USER = 'REMOVE_USER'
+import { AuthAction } from './authAction'
+
+export const SET_USER = 'SET_USER'
+export const REMOVE_USER = 'REMOVE_USER'
 
 export interface Auth {
   email: string
@@ -8,7 +10,7 @@ export interface Auth {
 }
 
 const defaultQuizState: Auth = {
-  email: 'aksjf@adk.adm',
+  email: null,
   token: null,
   id: null,
 }
@@ -31,23 +33,6 @@ const authReducer = (state = defaultQuizState, action: AuthAction): Auth => {
 
     default:
       return state
-  }
-}
-
-interface AuthAction {
-  type: string
-  payload?: Auth
-}
-
-export const SetUser = (newUser: Auth): AuthAction => {
-  return {
-    type: SET_USER,
-    payload: newUser,
-  }
-}
-export const RemoveUser = (): AuthAction => {
-  return {
-    type: REMOVE_USER,
   }
 }
 

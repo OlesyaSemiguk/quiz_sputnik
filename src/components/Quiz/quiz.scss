@@ -4,3 +4,19 @@
 .active {
   display: block;
 }
+.quiz {
+  display: flex;
+  justify-content: center;
+}
+.timer {
+  margin-top: 20px;
+  display: flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  div {
+    font-size: 20px;
+  }
+}

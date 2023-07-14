@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'antd'
 import { HeaderComponents } from 'components/Header/HeaderComponents'
-import { redirect, useLocation } from 'react-router-dom'
-import { LOGIN_ROUTE, QUIZ_ROUTE, REGISTRATION_ROUTE } from 'utils/consts'
+import { useLocation } from 'react-router-dom'
+import { LOGIN_ROUTE, REGISTRATION_ROUTE } from 'utils/consts'
 import './stylePage.scss'
 import { useDispatch } from 'react-redux'
 import {
@@ -11,8 +11,8 @@ import {
   signInWithEmailAndPassword,
   User,
 } from 'firebase/auth'
-import { SetUser } from 'reducers/authReducer'
 import { useNavigate } from 'react-router-dom'
+import { SetUser } from 'reducers/auth/authAction'
 
 export const AuthPage = () => {
   const dispatch = useDispatch()
@@ -53,12 +53,11 @@ export const AuthPage = () => {
       .then(({ user }) => {
         getTokenSetUser(user)
       })
-      .catch(console.error)
+      .catch(() => alert('Invalid user'))
   }
 
   const getTokenSetUser = async (user: User) => {
     const token = await user.getIdToken()
-    console.log('token', token)
 
     dispatch(
       SetUser({
@@ -70,6 +69,7 @@ export const AuthPage = () => {
     navigate('/quiz')
     return token
   }
+
   return (
     <>
       <HeaderComponents />
