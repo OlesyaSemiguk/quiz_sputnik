@@ -1,29 +1,72 @@
 import React, { useState } from 'react'
 import { Button, Modal } from 'antd'
-import { Header } from 'antd/es/layout/layout'
 import { HeaderComponents } from 'components/Header/HeaderComponents'
 import { useLocation } from 'react-router-dom'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from 'utils/consts'
 import './stylePage.scss'
+import { useDispatch } from 'react-redux'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  User,
+} from 'firebase/auth'
+import { SetUser } from 'reducers/authReducer'
 
 export const StartPage = () => {
+  const dispatch = useDispatch()
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
   const [isModalOpen, setIsModalOpen] = useState(true)
   const [email, setEmail] = useState('')
-  const [pass, setPass] = useState('')
+  const [password, setPassword] = useState('')
 
   const showModal = () => {
     setIsModalOpen(true)
   }
   const handleOk = () => {
+    if (isLogin) {
+      loginUser(email, password)
+    } else {
+      createUser(email, password)
+    }
     setIsModalOpen(false)
   }
   const handleCancel = () => {
     setIsModalOpen(false)
   }
-  const login = (email: string, pass: string) => {}
+  const loginUser = (email: string, password: string) => {
+    const auth = getAuth()
+    signInWithEmailAndPassword(auth, email, password)
+      .then(user => {
+        console.log(user)
+      })
+      .catch(console.error)
+  }
 
+  const createUser = async (email: string, password: string) => {
+    const auth = getAuth()
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        getTokenSetUser(user)
+      })
+
+      .catch(console.error)
+  }
+
+  const getTokenSetUser = async (user: User) => {
+    const token = await user.getIdToken()
+    console.log('token', token)
+    dispatch(
+      SetUser({
+        email: user.email,
+        token: token,
+        id: user.uid,
+      }),
+    )
+    return token
+  }
   return (
     <>
       <HeaderComponents />
@@ -51,7 +94,7 @@ export const StartPage = () => {
             type="password"
             placeholder="Введите пароль"
             required
-            onChange={e => setPass(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
           {isLogin ? (
             <div className="anotherModal">
@@ -66,4 +109,7 @@ export const StartPage = () => {
       </Modal>
     </>
   )
+}
+function setUser(arg0: {}): any {
+  throw new Error('Function not implemented.')
 }

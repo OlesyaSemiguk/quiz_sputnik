@@ -3,7 +3,7 @@ const REMOVE_USER = 'REMOVE_USER'
 
 export interface Auth {
   email: string
-  token: string
+  token: any
   id: string
 }
 
