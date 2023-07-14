@@ -3,7 +3,7 @@ import { questionsData } from 'data/question'
 import { Button, Space } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
-import { FinishQuiz } from 'reducers/reposReducer'
+import { FinishQuiz } from 'reducers/quizReducer'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
 import { Pagination } from 'antd'
@@ -12,8 +12,8 @@ import './quiz.scss'
 
 export const Quiz = () => {
   const dispatch = useDispatch()
-  const answers = useSelector((state: RootState) => state.store.answers)
-  const isFinish = useSelector((state: RootState) => state.store.isFinish)
+  const answers = useSelector((state: RootState) => state.stateQuiz.answers)
+  const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
   //проверка ответов
   const [quantityСorrectAnswer, setQuantity] = useState(0)
   function CheckAnswerButton() {

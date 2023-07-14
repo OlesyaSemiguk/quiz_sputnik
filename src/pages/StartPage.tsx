@@ -5,10 +5,13 @@ import { HeaderComponents } from 'components/Header/HeaderComponents'
 import { useLocation } from 'react-router-dom'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from 'utils/consts'
 import './stylePage.scss'
+
 export const StartPage = () => {
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
   const [isModalOpen, setIsModalOpen] = useState(true)
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
 
   const showModal = () => {
     setIsModalOpen(true)
@@ -19,6 +22,7 @@ export const StartPage = () => {
   const handleCancel = () => {
     setIsModalOpen(false)
   }
+  const login = (email: string, pass: string) => {}
 
   return (
     <>
@@ -36,13 +40,18 @@ export const StartPage = () => {
       >
         <div>
           <p>Email</p>
-          <input type="text" placeholder="Enter Email" name="email" required />
-          <p>Password</p>
+          <input
+            type="text"
+            placeholder="Введите Email"
+            required
+            onChange={e => setEmail(e.target.value)}
+          />
+          <p>Пароль</p>
           <input
             type="password"
-            placeholder="Enter Password"
-            name="psw"
+            placeholder="Введите пароль"
             required
+            onChange={e => setPass(e.target.value)}
           />
           {isLogin ? (
             <div className="anotherModal">

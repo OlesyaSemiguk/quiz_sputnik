@@ -5,6 +5,8 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.scss'
 import { Provider } from 'react-redux'
 import { store } from 'reducers/store'
+import 'firebase'
+
 const root = (
   <Provider store={store}>
     <BrowserRouter>

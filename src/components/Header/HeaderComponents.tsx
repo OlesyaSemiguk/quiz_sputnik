@@ -2,6 +2,7 @@ import React from 'react'
 import { Layout } from 'antd'
 import { Typography } from 'antd'
 import { LOGIN_ROUTE } from 'utils/consts'
+
 const { Title } = Typography
 
 const { Header } = Layout

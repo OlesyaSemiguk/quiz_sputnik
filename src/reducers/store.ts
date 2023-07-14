@@ -1,14 +1,17 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
-import reposReducer, { Quiz } from './reposReducer'
+import quizReducer, { Quiz } from './quizReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
+import authReducer, { Auth } from './authReduser'
 
 export interface RootState {
-  store: Quiz
+  stateQuiz: Quiz
+  stateAuth: Auth
 }
 
 const rootReducer = combineReducers<RootState>({
-  store: reposReducer,
+  stateQuiz: quizReducer,
+  stateAuth: authReducer,
 })
 
 export const store = createStore(

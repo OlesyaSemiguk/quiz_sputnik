@@ -6,7 +6,7 @@ import {
   ChooseAnswer,
   CurrentQuestion,
   DeleteAnswer,
-} from 'reducers/reposReducer'
+} from 'reducers/quizReducer'
 import { RootState } from 'reducers/store'
 
 const { Title } = Typography
@@ -17,8 +17,8 @@ interface QuestionBlockProps {
 
 export const QuestionBlock = ({ question }: QuestionBlockProps) => {
   const dispatch = useDispatch()
-  const isFinish = useSelector((state: RootState) => state.store.isFinish)
-  const answers = useSelector((state: RootState) => state.store.answers)
+  const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
+  const answers = useSelector((state: RootState) => state.stateQuiz.answers)
   function onCheckboxClick(questionId: number, answerIndex: number) {
     dispatch(CurrentQuestion(questionId))
     dispatch(ChooseAnswer(answerIndex))

@@ -13,7 +13,7 @@ const defaultQuizState: Quiz = {
   isFinish: false,
 }
 
-const reposReducer = (state = defaultQuizState, action: UserAction): Quiz => {
+const quizReducer = (state = defaultQuizState, action: UserAction): Quiz => {
   switch (action.type) {
     case CURRENT_QUESTION:
       return {
@@ -74,4 +74,4 @@ export const DeleteAnswer = (questionId: number): UserAction => {
   }
 }
 
-export default reposReducer
+export default quizReducer
