@@ -1,6 +1,6 @@
 import NotFoundPage from 'pages/NotFoundPage'
 import QuizPage from 'pages/QuizPage'
-import { StartPage } from 'pages/StartPage'
+import { AuthPage } from 'pages/AuthPage'
 import { LOGIN_ROUTE, QUIZ_ROUTE, REGISTRATION_ROUTE } from 'utils/consts'
 
 export const authRoutes = [
@@ -17,11 +17,11 @@ export const authRoutes = [
 export const publicRoutes = [
   {
     path: LOGIN_ROUTE,
-    Component: StartPage,
+    Component: AuthPage,
   },
   {
     path: REGISTRATION_ROUTE,
-    Component: StartPage,
+    Component: AuthPage,
   },
   {
     path: '*',
