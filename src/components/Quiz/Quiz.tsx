@@ -1,14 +1,15 @@
 import { QuestionBlock } from 'components/QuestionBlock/QuestionBlock'
 import { questionsData } from 'data/question'
-import { Button, Space } from 'antd'
+import { Button, Col, Space, Statistic } from 'antd'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { FinishQuiz } from 'reducers/quizReducer'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
 import { Pagination } from 'antd'
-import type { PaginationProps } from 'antd'
+import type { CountdownProps, PaginationProps } from 'antd'
 import './quiz.scss'
+import Countdown from 'antd/es/statistic/Countdown'
 
 export const Quiz = () => {
   const dispatch = useDispatch()
@@ -34,10 +35,20 @@ export const Quiz = () => {
   const onChange: PaginationProps['onChange'] = page => {
     setCurrentPage(page)
   }
+  const { Countdown } = Statistic
+
+  const deadline = Date.now() + 1000 * 60 * 0.5 // Dayjs is also OK
 
   return (
     <div className="quiz">
       <Space direction="vertical" size="middle">
+        <Col span={12}>
+          <Countdown
+            title="Таймер"
+            value={deadline}
+            onFinish={CheckAnswerButton}
+          />
+        </Col>
         <div className="quiz_question">
           {currentQuestion.map(questionData => (
             <QuestionBlock question={questionData} key={questionData.id} />
@@ -45,13 +56,14 @@ export const Quiz = () => {
         </div>
         <Button
           type="primary"
+          disabled={false}
           onClick={() => {
             CheckAnswerButton()
           }}
         >
           Проверить ответы
         </Button>
-        <h3 className={isFinish ? 'result_active' : 'result'}>
+        <h3 className={isFinish ? 'active' : 'result'}>
           Правильных ответов {quantityСorrectAnswer} из {questionsData.length}
         </h3>
         <Pagination

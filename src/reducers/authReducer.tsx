@@ -8,7 +8,7 @@ export interface Auth {
 }
 
 const defaultQuizState: Auth = {
-  email: null,
+  email: 'aksjf@adk.adm',
   token: null,
   id: null,
 }
