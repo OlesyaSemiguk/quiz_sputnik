@@ -39,6 +39,7 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
         {question.answers.map((answers, index) =>
           isQuention ? (
             <div className="answer" key={index}>
+              {/* элемент из библиотеки, поэтому не получеатся просто передать функцию */}
               <Checkbox
                 onClick={() => onCheckboxClick(question.id, index)}
                 checked={checked(question.id, index)}
