@@ -1,5 +1,5 @@
 import React from 'react'
-import AppRouter from 'components/routing/AppRouter'
+import AppRouter from 'routing/AppRouter'
 
 export function App() {
   return <AppRouter />

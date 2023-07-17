@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, Layout } from 'antd'
 import { Typography } from 'antd'
-import { useAuth } from 'components/hooks/use-auth'
 import { useDispatch } from 'react-redux'
 import { RemoveUser } from 'reducers/auth/authAction'
+import { useAuth } from 'hooks/use-auth'
 
 const { Title } = Typography
 const { Header } = Layout
