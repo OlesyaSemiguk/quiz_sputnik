@@ -6,6 +6,6 @@ const config: Config.InitialOptions = {
     '^.+\\.tsx?$': 'ts-jest',
   },
   transformIgnorePatterns: ['^.+\\.js$'],
-  moduleDirectories: ['node_modules', 'src', __dirname],
+  moduleDirectories: ['src', 'node_modules'],
 }
 export default config

@@ -16,7 +16,6 @@ axios.interceptors.request.use(async function (res) {
   const refreshToken = getCookie('refresh_token')
   //замена токена
   if (refreshToken && lifetimeTokenLeft < minLifeTimeForUpdate) {
-    console.log('refresh')
     const dispatsh = useDispatch()
     const { data } = await refreshTokenRequest()
     dispatsh(tokenUpdate(data.id_token))

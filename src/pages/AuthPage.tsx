@@ -7,7 +7,7 @@ import './stylePage.scss'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createUserRequest, loginUserRequest } from 'api/requestsToDatabase'
-import { loginStart, loginSucces } from 'reducers/auth/authAction'
+import { loginSucces } from 'reducers/auth/authAction'
 
 export const AuthPage = () => {
   const dispatch = useDispatch()
@@ -25,38 +25,31 @@ export const AuthPage = () => {
     if (isLogin) {
       loginUser(email, password)
     } else {
-      console.log('handleOk')
-      dispatch(loginStart())
       createUser(email, password)
     }
-
     setIsModalOpen(false)
   }
   const handleCancel = () => {
     setIsModalOpen(false)
   }
-
   const loginUser = async (email: string, password: string) => {
-    console.log('loginUser')
     loginUserRequest(email, password)
       .then(({ data }) => {
-        console.log(data)
-        console.log(data.refreshToken)
-        document.cookie = `refresh_token=${data.refreshToken};max-age=3600`
-        dispatch(loginSucces(data.idToken, data.email))
-        navigate('/quiz')
+        setData(data)
       })
       .catch(() => alert('Invalid user'))
   }
   const createUser = async (email: string, password: string) => {
-    console.log('createUser')
     createUserRequest(email, password)
       .then(({ data }) => {
-        document.cookie = `refresh_token=${data.refreshToken};max-age=3600`
-        dispatch(loginSucces(data.idToken, data.email))
-        navigate('/quiz')
+        setData(data)
       })
       .catch(() => alert('Invalid user'))
+  }
+  const setData = (data: any) => {
+    document.cookie = `refresh_token=${data.refreshToken};max-age=3600`
+    dispatch(loginSucces(data.idToken, data.email))
+    navigate('/quiz')
   }
   return (
     <>
@@ -68,7 +61,7 @@ export const AuthPage = () => {
         size="large"
       >
         Авторизация
-      </Button>
+      </Button>{' '}
       <Modal
         title={isLogin ? 'Авторизация' : 'Регистрация'}
         open={isModalOpen}
@@ -102,7 +95,7 @@ export const AuthPage = () => {
             </div>
           )}
         </div>
-      </Modal>
+      </Modal>{' '}
     </>
   )
 }

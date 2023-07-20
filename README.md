@@ -2,12 +2,16 @@
 
 ## Install libraries
 
-To install libraries run:
+Для установки зависимостей
 
 ### `npm install`
 
 ## Run project
 
-In the project directory, you can run:
+Для запуска проекта
 
 ### `npm start`
+
+Для запуска тестов
+
+### `npm run test`

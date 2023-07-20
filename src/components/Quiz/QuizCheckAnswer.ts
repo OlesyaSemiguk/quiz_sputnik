@@ -4,7 +4,6 @@ export const QuizCheckAnswer = (answersUser: {
   [key: number]: number
 }): number => {
   let quantityСorrectAnswer = 0
-  console.log(answersUser)
   for (let key in answersUser) {
     let numQuestion = Number(key)
     let chooseUserAnswer = questionsData.find(

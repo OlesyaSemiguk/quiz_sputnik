@@ -1,5 +1,4 @@
 export function deleteRefreshToken() {
-  console.log('delete')
   document.cookie = `refresh_token=1 ;max-age=0`
 }
 
