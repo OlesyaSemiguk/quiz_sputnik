@@ -1,10 +1,4 @@
-import {
-  LOGIN_FAILURE,
-  LOGIN_START,
-  LOGIN_SUCESS,
-  LOGOUT,
-  TOKEN_UPDATE,
-} from './authReducer'
+import { LOGIN_SUCESS, LOGOUT, TOKEN_UPDATE } from './authReducer'
 
 export interface AuthAction {
   type: string
@@ -13,11 +7,6 @@ export interface AuthAction {
   payloadEmail?: string
 }
 
-export const loginStart = (): AuthAction => {
-  return {
-    type: LOGIN_START,
-  }
-}
 export const loginSucces = (accessToken: string, email: string) => {
   return {
     type: LOGIN_SUCESS,
@@ -25,12 +14,7 @@ export const loginSucces = (accessToken: string, email: string) => {
     payloadEmail: email,
   }
 }
-export const loginFailure = (error: string): AuthAction => {
-  return {
-    type: LOGIN_FAILURE,
-    payload: error,
-  }
-}
+
 export const logout = (): AuthAction => {
   return {
     type: LOGOUT,
