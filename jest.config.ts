@@ -7,5 +7,6 @@ const config: Config.InitialOptions = {
   },
   transformIgnorePatterns: ['^.+\\.js$'],
   moduleDirectories: ['src', 'node_modules'],
+  testEnvironment: 'jsdom',
 }
 export default config

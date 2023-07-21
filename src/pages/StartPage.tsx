@@ -1,4 +1,7 @@
+import ButtonWithError from 'components/ButtonWithError'
+import ErrorBoundary from 'components/ErrorBoundary'
 import { HeaderComponents } from 'components/Header/HeaderComponents'
+import { error } from 'console'
 import React from 'react'
 import { LOGIN_ROUTE } from 'utils/consts'
 
@@ -21,6 +24,9 @@ const StartPage = () => {
           Главная страница
         </p>
         <a href={LOGIN_ROUTE}>Перейти на страницу авторизации</a>
+        <ErrorBoundary>
+          <ButtonWithError />
+        </ErrorBoundary>
       </div>
     </>
   )

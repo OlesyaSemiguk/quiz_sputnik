@@ -2,7 +2,6 @@ import { LOGIN_SUCESS, LOGOUT, TOKEN_UPDATE } from './authReducer'
 
 export interface AuthAction {
   type: string
-  payload?: string
   payloadToken?: string
   payloadEmail?: string
 }
@@ -23,6 +22,6 @@ export const logout = (): AuthAction => {
 export const tokenUpdate = (accessToken: string): AuthAction => {
   return {
     type: TOKEN_UPDATE,
-    payload: accessToken,
+    payloadToken: accessToken,
   }
 }

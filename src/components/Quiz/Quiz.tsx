@@ -29,6 +29,7 @@ export const Quiz = () => {
   const [questionPerPage] = useState(5)
   const lastQuestionIndex = currentPage * questionPerPage
   const firstQuestionIndex = lastQuestionIndex - questionPerPage
+
   const currentQuestion = questionsData.slice(
     firstQuestionIndex,
     lastQuestionIndex,

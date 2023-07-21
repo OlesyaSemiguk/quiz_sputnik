@@ -8,6 +8,7 @@ import {
   CurrentQuestion,
   DeleteAnswer,
 } from 'reducers/quiz/quizActions'
+import { useCheckedAnswer } from 'hooks/useChekedAnswer'
 
 const { Title } = Typography
 
@@ -22,14 +23,11 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
   function onCheckboxClick(questionId: number, answerIndex: number) {
     dispatch(CurrentQuestion(questionId))
     dispatch(ChooseAnswer(answerIndex))
-    if (checked(question.id, answerIndex)) {
+    if (answers[questionId] === answerIndex) {
       dispatch(DeleteAnswer(answerIndex))
     }
   }
-  const checked = (questionId: number, answerIndex: number): boolean => {
-    if (answers[questionId] === answerIndex) return true
-    else return false
-  }
+
   const isQuention = !!question.answers.length
 
   return (
@@ -42,7 +40,7 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
               {/* элемент из библиотеки, поэтому не получеатся просто передать функцию */}
               <Checkbox
                 onClick={() => onCheckboxClick(question.id, index)}
-                checked={checked(question.id, index)}
+                checked={useCheckedAnswer(question.id, index)}
                 disabled={isFinish}
                 className={String(index)}
               >

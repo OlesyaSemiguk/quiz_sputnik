@@ -45,7 +45,7 @@ const authReducer = (
         ...state,
         authData: {
           ...state.authData,
-          accessToken: action.payload,
+          accessToken: action.payloadToken,
         },
       }
     default:
