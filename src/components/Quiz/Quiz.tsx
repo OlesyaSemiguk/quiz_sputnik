@@ -29,7 +29,7 @@ export const Quiz = () => {
   const [questionPerPage] = useState(5)
   const lastQuestionIndex = currentPage * questionPerPage
   const firstQuestionIndex = lastQuestionIndex - questionPerPage
-
+  const totalPage = Math.ceil(questionsData.length / questionPerPage) * 10
   const currentQuestion = questionsData.slice(
     firstQuestionIndex,
     lastQuestionIndex,
@@ -62,11 +62,7 @@ export const Quiz = () => {
         <h3 className={isFinish ? 'active' : 'result'}>
           Правильных ответов {quantityСorrectAnswer} из {questionsData.length}
         </h3>
-        <Pagination
-          defaultCurrent={1}
-          total={Math.ceil(questionsData.length / questionPerPage) * 10}
-          onChange={onChange}
-        />{' '}
+        <Pagination defaultCurrent={1} total={totalPage} onChange={onChange} />{' '}
       </Space>
     </div>
   )

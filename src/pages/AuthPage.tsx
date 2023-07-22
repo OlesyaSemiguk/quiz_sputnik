@@ -51,6 +51,7 @@ export const AuthPage = () => {
     dispatch(loginSucces(data.idToken, data.email))
     navigate('/quiz')
   }
+  const textOnPage = isLogin ? 'Авторизация' : 'Регистрация'
   return (
     <>
       <HeaderComponents />
@@ -60,10 +61,10 @@ export const AuthPage = () => {
         className="button_auth"
         size="large"
       >
-        Авторизация
+        {textOnPage}
       </Button>{' '}
       <Modal
-        title={isLogin ? 'Авторизация' : 'Регистрация'}
+        title={textOnPage}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
