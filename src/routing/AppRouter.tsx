@@ -22,7 +22,7 @@ const AppRouter = () => {
       />
       <Route key={LOGIN_ROUTE} path={LOGIN_ROUTE} element={<AuthPage />} />
       <Route key={START_ROUTE} path={START_ROUTE} element={<StartPage />} />
-      <Route key={'*'} path={'*'} element={<NotFoundPage />} />
+      {/* <Route key={'*'} path={'*'} element={<NotFoundPage />} /> */}
       <Route element={<PrivateRoute />}>
         <Route key={QUIZ_ROUTE} path={QUIZ_ROUTE} element={<QuizPage />} />
       </Route>

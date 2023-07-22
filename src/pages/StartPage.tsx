@@ -11,7 +11,7 @@ const StartPage = () => {
       <HeaderComponents />
       <div className="PageContent">
         <p className="TitlePageContent">Главная страница</p>
-        <a className="StartPageLink" href={LOGIN_ROUTE}>
+        <a className="StartPageLink" href="#/login">
           Перейти на страницу авторизации
         </a>
         <ErrorBoundary>

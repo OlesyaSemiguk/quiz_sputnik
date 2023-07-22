@@ -88,11 +88,11 @@ export const AuthPage = () => {
           />
           {isLogin ? (
             <div className="anotherModal">
-              Нет аккаунта? <a href={REGISTRATION_ROUTE}>Регистрация</a>
+              Нет аккаунта? <a href="#/registration">Регистрация</a>
             </div>
           ) : (
             <div className="anotherModal">
-              Есть аккаунт? <a href={LOGIN_ROUTE}>Авторизация</a>
+              Есть аккаунт? <a href="#/login">Авторизация</a>
             </div>
           )}
         </div>

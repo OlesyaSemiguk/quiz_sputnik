@@ -50,13 +50,7 @@ export const Quiz = () => {
             <QuestionBlock question={questionData} key={questionData.id} />
           ))}
         </div>
-        <Button
-          type="primary"
-          disabled={false}
-          onClick={() => {
-            CheckAnswerButton()
-          }}
-        >
+        <Button type="primary" disabled={false} onClick={CheckAnswerButton}>
           Проверить ответы
         </Button>
         <h3 className={isFinish ? 'active' : 'result'}>
