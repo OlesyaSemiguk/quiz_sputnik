@@ -9,6 +9,14 @@ import { useNavigate } from 'react-router-dom'
 import { createUserRequest, loginUserRequest } from 'api/requestsToDatabase'
 import { loginSucces } from 'reducers/auth/authAction'
 
+interface dataResponse {
+  idToken: string
+  email: string
+  refreshToken: string
+  expiresIn: string
+  localId: string
+  registered?: boolean
+}
 export const AuthPage = () => {
   const dispatch = useDispatch()
   const location = useLocation()
@@ -46,7 +54,8 @@ export const AuthPage = () => {
       })
       .catch(() => alert('Invalid user'))
   }
-  const setData = (data: any) => {
+  const setData = (data: dataResponse) => {
+    console.log(data)
     document.cookie = `refresh_token=${data.refreshToken};max-age=3600`
     dispatch(loginSucces(data.idToken, data.email))
     navigate('/quiz')
