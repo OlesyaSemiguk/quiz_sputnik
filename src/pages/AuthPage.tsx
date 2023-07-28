@@ -17,7 +17,7 @@ interface dataResponse {
   localId: string
   registered?: boolean
 }
-export const AuthPage = () => {
+const AuthPage = () => {
   const dispatch = useDispatch()
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
@@ -109,3 +109,5 @@ export const AuthPage = () => {
     </>
   )
 }
+
+export default AuthPage

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import QuizPage from 'pages/QuizPage'
-import NotFoundPage from 'pages/NotFoundPage'
-import { AuthPage } from 'pages/AuthPage'
 import { PrivateRoute } from './PrivetRoute'
-import StartPage from 'pages/StartPage'
+// import QuizPage from 'pages/QuizPage'
+// import NotFoundPage from 'pages/NotFoundPage'
+import AuthPage from 'pages/AuthPage'
+// import StartPage from 'pages/StartPage'
 import {
   LOGIN_ROUTE,
   QUIZ_ROUTE,
@@ -12,6 +12,10 @@ import {
   START_ROUTE,
 } from 'utils/consts'
 
+const StartPage = lazy(() => import('pages/StartPage'))
+// const AuthPage = lazy(() => import('pages/AuthPage'))
+const NotFoundPage = lazy(() => import('pages/NotFoundPage'))
+const QuizPage = lazy(() => import('pages/QuizPage'))
 const AppRouter = () => {
   return (
     <Routes>
@@ -21,10 +25,34 @@ const AppRouter = () => {
         element={<AuthPage />}
       />
       <Route key={LOGIN_ROUTE} path={LOGIN_ROUTE} element={<AuthPage />} />
-      <Route key={START_ROUTE} path={START_ROUTE} element={<StartPage />} />
-      <Route key={'*'} path={'*'} element={<NotFoundPage />} />
+      <Route
+        key={START_ROUTE}
+        path={START_ROUTE}
+        element={
+          <Suspense fallback={<p>Loading...</p>}>
+            <StartPage />
+          </Suspense>
+        }
+      />
+      <Route
+        key={'*'}
+        path={'*'}
+        element={
+          <Suspense fallback={<p>Loading...</p>}>
+            <NotFoundPage />
+          </Suspense>
+        }
+      />
       <Route element={<PrivateRoute />}>
-        <Route key={QUIZ_ROUTE} path={QUIZ_ROUTE} element={<QuizPage />} />
+        <Route
+          key={QUIZ_ROUTE}
+          path={QUIZ_ROUTE}
+          element={
+            <Suspense fallback={<p>Loading...</p>}>
+              <QuizPage />
+            </Suspense>
+          }
+        />
       </Route>
     </Routes>
   )
