@@ -1,0 +1,2 @@
+.result{display:none}.active{display:block}.quiz{display:flex;justify-content:center}.timer{margin-top:20px;display:flex;border:1px solid #000;border-radius:5px;align-items:center;justify-content:center;flex-flow:column wrap}.timer div{font-size:20px}
+.site-layout-content{background-color:#fff;min-height:calc(100vh - 133px)}
