@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import { refreshTokenRequest } from './requestsToDatabase'
 import { useDispatch, useSelector } from 'react-redux'
 import { tokenUpdate } from 'reducers/auth/authAction'

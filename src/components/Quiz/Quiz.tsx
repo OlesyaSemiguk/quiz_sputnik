@@ -1,7 +1,7 @@
 import { QuestionBlock } from 'components/QuestionBlock/QuestionBlock'
 import { questionsData } from 'data/question'
 import { Button, Space, Statistic } from 'antd'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
@@ -10,7 +10,7 @@ import type { PaginationProps } from 'antd'
 import './quiz.scss'
 import { FinishQuiz } from 'reducers/quiz/quizActions'
 
-export const Quiz = () => {
+const Quiz = () => {
   const dispatch = useDispatch()
   const { Countdown } = Statistic
   const answers = useSelector((state: RootState) => state.stateQuiz.answers)
@@ -36,6 +36,7 @@ export const Quiz = () => {
   )
   const onChange: PaginationProps['onChange'] = page => {
     setCurrentPage(page)
+    console.log('123')
   }
 
   return (
@@ -61,3 +62,4 @@ export const Quiz = () => {
     </div>
   )
 }
+export default Quiz

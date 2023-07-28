@@ -1,8 +1,9 @@
-import React from 'react'
 import { Layout } from 'antd'
+import React from 'react'
 
 const { Footer } = Layout
 
-export const FooterComponents = () => {
+const FooterComponents = () => {
   return <Footer style={{ textAlign: 'center' }}>Quiz ©2023</Footer>
 }
+export default React.memo(FooterComponents)

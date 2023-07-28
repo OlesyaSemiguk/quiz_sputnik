@@ -1,10 +1,8 @@
-import React, { lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { PrivateRoute } from './PrivetRoute'
-// import QuizPage from 'pages/QuizPage'
-// import NotFoundPage from 'pages/NotFoundPage'
 import AuthPage from 'pages/AuthPage'
-// import StartPage from 'pages/StartPage'
+
 import {
   LOGIN_ROUTE,
   QUIZ_ROUTE,
@@ -13,9 +11,9 @@ import {
 } from 'utils/consts'
 
 const StartPage = lazy(() => import('pages/StartPage'))
-// const AuthPage = lazy(() => import('pages/AuthPage'))
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'))
 const QuizPage = lazy(() => import('pages/QuizPage'))
+
 const AppRouter = () => {
   return (
     <Routes>

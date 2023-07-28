@@ -1,6 +1,5 @@
-import React from 'react'
-import { FooterComponents } from 'components/Footer/FooterComponents'
-import { HeaderComponents } from 'components/Header/HeaderComponents'
+import FooterComponents from 'components/Footer/FooterComponents'
+import HeaderComponents from 'components/Header/HeaderComponents'
 import { Main } from 'components/Main/Main'
 import { Layout } from 'antd'
 import { ConfigProvider } from 'antd'

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button, Modal } from 'antd'
-import { HeaderComponents } from 'components/Header/HeaderComponents'
+import HeaderComponents from 'components/Header/HeaderComponents'
 import { useLocation } from 'react-router-dom'
 import { LOGIN_ROUTE, REGISTRATION_ROUTE } from 'utils/consts'
 import './stylePage.scss'
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createUserRequest, loginUserRequest } from 'api/requestsToDatabase'
 import { loginSucces } from 'reducers/auth/authAction'
+import FooterComponents from 'components/Footer/FooterComponents'
 
 interface dataResponse {
   idToken: string
@@ -55,7 +56,6 @@ const AuthPage = () => {
       .catch(() => alert('Invalid user'))
   }
   const setData = (data: dataResponse) => {
-    console.log(data)
     document.cookie = `refresh_token=${data.refreshToken};max-age=3600`
     dispatch(loginSucces(data.idToken, data.email))
     navigate('/quiz')
@@ -64,48 +64,51 @@ const AuthPage = () => {
   return (
     <>
       <HeaderComponents />
-      <Button
-        type="primary"
-        onClick={showModal}
-        className="button_auth"
-        size="large"
-      >
-        {textOnPage}
-      </Button>{' '}
-      <Modal
-        title={textOnPage}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        className="modal"
-        width={350}
-      >
-        <div>
-          <p>Email</p>
-          <input
-            type="text"
-            placeholder="Введите Email"
-            required
-            onChange={e => setEmail(e.target.value)}
-          />
-          <p>Пароль</p>
-          <input
-            type="password"
-            placeholder="Введите пароль"
-            required
-            onChange={e => setPassword(e.target.value)}
-          />
-          {isLogin ? (
-            <div className="anotherModal">
-              Нет аккаунта? <a href="#/registration">Регистрация</a>
-            </div>
-          ) : (
-            <div className="anotherModal">
-              Есть аккаунт? <a href="#/login">Авторизация</a>
-            </div>
-          )}
-        </div>
-      </Modal>{' '}
+      <div className="PageContent">
+        <Button
+          type="primary"
+          onClick={showModal}
+          className="button_auth"
+          size="large"
+        >
+          {textOnPage}
+        </Button>{' '}
+        <Modal
+          title={textOnPage}
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          className="modal"
+          width={350}
+        >
+          <div>
+            <p>Email</p>
+            <input
+              type="text"
+              placeholder="Введите Email"
+              required
+              onChange={e => setEmail(e.target.value)}
+            />
+            <p>Пароль</p>
+            <input
+              type="password"
+              placeholder="Введите пароль"
+              required
+              onChange={e => setPassword(e.target.value)}
+            />
+            {isLogin ? (
+              <div className="anotherModal">
+                Нет аккаунта? <a href="#/registration">Регистрация</a>
+              </div>
+            ) : (
+              <div className="anotherModal">
+                Есть аккаунт? <a href="#/login">Авторизация</a>
+              </div>
+            )}
+          </div>
+        </Modal>{' '}
+      </div>
+      <FooterComponents />
     </>
   )
 }

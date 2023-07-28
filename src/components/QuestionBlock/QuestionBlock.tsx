@@ -1,5 +1,4 @@
 import { Question } from 'data/question'
-import React from 'react'
 import { Typography, Checkbox } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'reducers/store'
@@ -37,7 +36,6 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
         {question.answers.map((answers, index) =>
           isQuention ? (
             <div className="answer" key={index}>
-              {/* элемент из библиотеки, поэтому не получеатся просто передать функцию */}
               <Checkbox
                 onClick={() => onCheckboxClick(question.id, index)}
                 checked={useCheckedAnswer(question.id, index)}

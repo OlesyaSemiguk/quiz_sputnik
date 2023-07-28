@@ -1,10 +1,9 @@
 import ButtonWithError from 'components/ButtonWithError'
 import ErrorBoundary from 'components/ErrorBoundary'
-import { HeaderComponents } from 'components/Header/HeaderComponents'
-import { error } from 'console'
-import React from 'react'
-import { LOGIN_ROUTE } from 'utils/consts'
+import HeaderComponents from 'components/Header/HeaderComponents'
+
 import './stylePage.scss'
+import FooterComponents from 'components/Footer/FooterComponents'
 const StartPage = () => {
   return (
     <>
@@ -18,6 +17,7 @@ const StartPage = () => {
           <ButtonWithError />
         </ErrorBoundary>
       </div>
+      <FooterComponents />
     </>
   )
 }
