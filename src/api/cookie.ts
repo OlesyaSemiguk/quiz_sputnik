@@ -3,7 +3,7 @@ export function deleteRefreshToken() {
 }
 
 export function getCookie(name: string) {
-  var matches = document.cookie.match(
+  const matches = document.cookie.match(
     new RegExp(
       '(?:^|; )' +
         name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +

@@ -18,7 +18,7 @@ const Quiz = () => {
   const [deadline, setDeadline] = useState(Date.now() + 1000 * 60 * 5)
   //проверка ответов
   const [quantityСorrectAnswer, setQuantity] = useState(0)
-
+  const isQuention = !!questionsData.length
   function CheckAnswerButton() {
     dispatch(FinishQuiz())
     QuizCheckAnswer(answers)
@@ -42,21 +42,29 @@ const Quiz = () => {
 
   return (
     <div className="quiz">
-      <Space direction="vertical" size="middle">
-        <Timer deadline={deadline} finish={CheckAnswerButton} />
-        <div className="quiz_question">
-          {currentQuestion.map(questionData => (
-            <QuestionBlock question={questionData} key={questionData.id} />
-          ))}
-        </div>
-        <Button type="primary" disabled={false} onClick={CheckAnswerButton}>
-          Проверить ответы
-        </Button>
-        <h3 className={isFinish ? 'active' : 'result'}>
-          Правильных ответов {quantityСorrectAnswer} из {questionsData.length}
-        </h3>
-        <Pagination defaultCurrent={1} total={totalPage} onChange={onChange} />{' '}
-      </Space>
+      {isQuention ? (
+        <Space direction="vertical" size="middle">
+          <Timer deadline={deadline} finish={CheckAnswerButton} />
+          <div className="quiz_question">
+            {currentQuestion.map(questionData => (
+              <QuestionBlock question={questionData} key={questionData.id} />
+            ))}
+          </div>
+          <Button type="primary" disabled={false} onClick={CheckAnswerButton}>
+            Проверить ответы
+          </Button>
+          <h3 className={isFinish ? 'active' : 'result'}>
+            Правильных ответов {quantityСorrectAnswer} из {questionsData.length}
+          </h3>
+          <Pagination
+            defaultCurrent={1}
+            total={totalPage}
+            onChange={onChange}
+          />
+        </Space>
+      ) : (
+        <div>Ошибка базы данных</div>
+      )}
     </div>
   )
 }

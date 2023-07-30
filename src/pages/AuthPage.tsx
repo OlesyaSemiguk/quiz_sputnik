@@ -74,7 +74,7 @@ const AuthPage = () => {
           size="large"
         >
           {textOnPage}
-        </Button>{' '}
+        </Button>
         <Modal
           title={textOnPage}
           open={isModalOpen}
@@ -108,7 +108,7 @@ const AuthPage = () => {
               </div>
             )}
           </div>
-        </Modal>{' '}
+        </Modal>
       </div>
       <FooterComponents />
     </>

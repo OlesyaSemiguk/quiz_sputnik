@@ -23,13 +23,13 @@ const QuestionBlock = ({ question }: QuestionBlockProps) => {
   const isQuention = !!question.answers.length
 
   const checkedCheckbox = (questionId: number, answerIndex: number) => {
-    let result = useMemo(() => {
-      if (answers[questionId] === answerIndex) {
-        return true
-      } else return false
-    }, [answers[questionId]])
-    return result
+    let isAnswerSelected = useMemo(
+      () => answers[questionId] === answerIndex,
+      [answers[questionId]],
+    )
+    return isAnswerSelected
   }
+
   const onCheckboxClick = (questionId: number, answerIndex: number) => {
     dispatch(CurrentQuestion(questionId))
     dispatch(ChooseAnswer(answerIndex))
@@ -42,21 +42,20 @@ const QuestionBlock = ({ question }: QuestionBlockProps) => {
     <div className="question-block" key="{question.id}">
       <Title level={3}>{question.questionText}</Title>
       <div className="question-answers">
-        {question.answers.map((answers, index) =>
-          isQuention ? (
+        {isQuention ? (
+          question.answers.map((answers, index) => (
             <div className="answer" key={index}>
               <Checkbox
                 onClick={() => onCheckboxClick(question.id, index)}
                 checked={checkedCheckbox(question.id, index)}
                 disabled={isFinish}
-                className={String(index)}
               >
                 {answers.textAnswer}
               </Checkbox>
             </div>
-          ) : (
-            <div>Ошибка сервера, нет ответов</div>
-          ),
+          ))
+        ) : (
+          <div>Ошибка сервера, нет ответов</div>
         )}
       </div>
     </div>

@@ -5,7 +5,7 @@ import { useAuth } from 'hooks/use-auth'
 import { deleteRefreshToken } from 'api/cookie'
 import { logout } from 'reducers/auth/authAction'
 import React from 'react'
-
+import './HeaderComponents.scss'
 const { Title } = Typography
 const { Header } = Layout
 
@@ -17,26 +17,21 @@ const HeaderComponents = () => {
     deleteRefreshToken()
   }
   return (
-    <Header
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      <div className="demo-logo" />
-      <Title style={{ color: 'white', cursor: 'default' }} level={3}>
-        QUIZ
-      </Title>
-      {isAuth && (
-        <Button
-          type="primary"
-          size="large"
-          style={{ display: 'flex', marginLeft: 'auto' }}
-          onClick={exitUser}
-        >
-          Выйти
-        </Button>
-      )}
+    <Header>
+      <div className="header">
+        <div className="demo-logo" />
+        <div className="title"> QUIZ</div>
+        {isAuth && (
+          <Button
+            type="primary"
+            size="large"
+            className="button"
+            onClick={exitUser}
+          >
+            Выйти
+          </Button>
+        )}
+      </div>
     </Header>
   )
 }
