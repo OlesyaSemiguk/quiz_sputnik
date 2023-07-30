@@ -7,7 +7,7 @@ import {
   CurrentQuestion,
   DeleteAnswer,
 } from 'reducers/quiz/quizActions'
-import { useCallback, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import React from 'react'
 
 const { Title } = Typography
@@ -21,18 +21,16 @@ const QuestionBlock = ({ question }: QuestionBlockProps) => {
   const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
   const answers = useSelector((state: RootState) => state.stateQuiz.answers)
   const isQuention = !!question.answers.length
-  const [solo, setsolo] = useState(1)
 
   const checkedCheckbox = (questionId: number, answerIndex: number) => {
-    let rea = useMemo(() => {
+    let result = useMemo(() => {
       if (answers[questionId] === answerIndex) {
         return true
       } else return false
     }, [answers[questionId]])
-    return rea
+    return result
   }
   const onCheckboxClick = (questionId: number, answerIndex: number) => {
-    console.log('rerender onCheckboxClick')
     dispatch(CurrentQuestion(questionId))
     dispatch(ChooseAnswer(answerIndex))
     if (answers[questionId] === answerIndex) {

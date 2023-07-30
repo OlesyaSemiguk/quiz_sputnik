@@ -1,7 +1,7 @@
 import QuestionBlock from 'components/QuestionBlock/QuestionBlock'
 import { questionsData } from 'data/question'
-import { Button, Space, Statistic } from 'antd'
-import { useCallback, useState } from 'react'
+import { Button, Space } from 'antd'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
@@ -13,7 +13,6 @@ import Timer from 'components/UI/Timer'
 
 const Quiz = () => {
   const dispatch = useDispatch()
-
   const answers = useSelector((state: RootState) => state.stateQuiz.answers)
   const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
   const [deadline, setDeadline] = useState(Date.now() + 1000 * 60 * 5)
