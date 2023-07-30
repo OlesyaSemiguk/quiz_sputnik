@@ -9,15 +9,17 @@ import { Pagination } from 'antd'
 import type { PaginationProps } from 'antd'
 import './quiz.scss'
 import { FinishQuiz } from 'reducers/quiz/quizActions'
+import Timer from 'components/UI/Timer'
 
 const Quiz = () => {
   const dispatch = useDispatch()
-  const { Countdown } = Statistic
+
   const answers = useSelector((state: RootState) => state.stateQuiz.answers)
   const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
+  const [deadline, setDeadline] = useState(Date.now() + 1000 * 60 * 5)
   //проверка ответов
   const [quantityСorrectAnswer, setQuantity] = useState(0)
-  const [deadline, setDeadline] = useState(Date.now() + 1000 * 60 * 5)
+
   function CheckAnswerButton() {
     dispatch(FinishQuiz())
     QuizCheckAnswer(answers)
@@ -42,10 +44,7 @@ const Quiz = () => {
   return (
     <div className="quiz">
       <Space direction="vertical" size="middle">
-        <div className="timer">
-          <div>Таймер</div>
-          <Countdown value={deadline} onFinish={CheckAnswerButton} />
-        </div>
+        <Timer deadline={deadline} finish={CheckAnswerButton} />
         <div className="quiz_question">
           {currentQuestion.map(questionData => (
             <QuestionBlock question={questionData} key={questionData.id} />
