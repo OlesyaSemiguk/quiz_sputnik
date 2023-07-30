@@ -1,4 +1,4 @@
-import { TIME_TOKEN_LIFE } from 'utils/constsAuth'
+import { TIME_TOKEN_LIFE } from 'utils/consts'
 import { AuthAction } from './authAction'
 
 export const LOGIN_SUCESS = 'LOGIN_SUCESS'

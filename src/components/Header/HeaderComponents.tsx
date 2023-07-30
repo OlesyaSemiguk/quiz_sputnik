@@ -1,7 +1,7 @@
 import { Button, Layout } from 'antd'
 import { Typography } from 'antd'
 import { useDispatch } from 'react-redux'
-import { useAuth } from 'hooks/use-auth'
+import { useAuth } from 'hooks/useAuth'
 import { deleteRefreshToken } from 'api/cookie'
 import { logout } from 'reducers/auth/authAction'
 import React from 'react'

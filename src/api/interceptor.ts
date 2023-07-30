@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { tokenUpdate } from 'reducers/auth/authAction'
 import { RootState } from 'reducers/store'
 import { getCookie } from 'api/cookie'
-import { TIME_TOKEN_LIFE } from 'utils/constsAuth'
+import { TIME_TOKEN_LIFE } from 'utils/consts'
 
 axios.interceptors.request.use(async function (res) {
   const lifetimeTokenLeft =

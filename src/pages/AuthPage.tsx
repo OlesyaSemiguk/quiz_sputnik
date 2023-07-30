@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Button, Modal } from 'antd'
-import HeaderComponents from 'components/Header/HeaderComponents'
 import { useLocation } from 'react-router-dom'
 import { LOGIN_ROUTE } from 'utils/consts'
 import './stylePage.scss'
@@ -8,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { createUserRequest, loginUserRequest } from 'api/requestsToDatabase'
 import { loginSucces } from 'reducers/auth/authAction'
-import FooterComponents from 'components/Footer/FooterComponents'
+import InputComponent from 'components/UI/InputComponent'
 
 interface dataResponse {
   idToken: string
@@ -22,7 +21,7 @@ const AuthPage = () => {
   const dispatch = useDispatch()
   const location = useLocation()
   const isLogin = location.pathname === LOGIN_ROUTE
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
@@ -65,7 +64,6 @@ const AuthPage = () => {
   const textOnPage = isLogin ? 'Авторизация' : 'Регистрация'
   return (
     <>
-      <HeaderComponents />
       <div className="PageContent">
         <Button
           type="primary"
@@ -85,32 +83,31 @@ const AuthPage = () => {
         >
           <div>
             <p>Email</p>
-            <input
+            <InputComponent
+              className="auth-page"
               type="text"
               placeholder="Введите Email"
-              required
               onChange={e => setEmail(e.target.value)}
             />
             <p>Пароль</p>
-            <input
+            <InputComponent
+              className="auth-page"
               type="password"
               placeholder="Введите пароль"
-              required
               onChange={e => setPassword(e.target.value)}
             />
             {isLogin ? (
-              <div className="anotherModal">
+              <div className="link-another-modal">
                 Нет аккаунта? <a href="#/registration">Регистрация</a>
               </div>
             ) : (
-              <div className="anotherModal">
+              <div className="link-another-modal">
                 Есть аккаунт? <a href="#/login">Авторизация</a>
               </div>
             )}
           </div>
         </Modal>
       </div>
-      <FooterComponents />
     </>
   )
 }
