@@ -1,7 +1,7 @@
-import { QuestionBlock } from 'components/QuestionBlock/QuestionBlock'
+import QuestionBlock from 'components/QuestionBlock/QuestionBlock'
 import { questionsData } from 'data/question'
 import { Button, Space, Statistic } from 'antd'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { QuizCheckAnswer } from './QuizCheckAnswer'
 import { RootState } from 'reducers/store'
@@ -26,6 +26,7 @@ const Quiz = () => {
     setQuantity(QuizCheckAnswer(answers))
     setDeadline(Date.now())
   }
+
   //пангинация
   const [currentPage, setCurrentPage] = useState(1)
   const [questionPerPage] = useState(5)
@@ -38,7 +39,6 @@ const Quiz = () => {
   )
   const onChange: PaginationProps['onChange'] = page => {
     setCurrentPage(page)
-    console.log('123')
   }
 
   return (

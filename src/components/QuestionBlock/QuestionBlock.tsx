@@ -7,7 +7,8 @@ import {
   CurrentQuestion,
   DeleteAnswer,
 } from 'reducers/quiz/quizActions'
-import { useCheckedAnswer } from 'hooks/useChekedAnswer'
+import { useCallback, useMemo, useState } from 'react'
+import React from 'react'
 
 const { Title } = Typography
 
@@ -15,19 +16,29 @@ interface QuestionBlockProps {
   question: Question
 }
 
-export const QuestionBlock = ({ question }: QuestionBlockProps) => {
+const QuestionBlock = ({ question }: QuestionBlockProps) => {
   const dispatch = useDispatch()
   const isFinish = useSelector((state: RootState) => state.stateQuiz.isFinish)
   const answers = useSelector((state: RootState) => state.stateQuiz.answers)
-  function onCheckboxClick(questionId: number, answerIndex: number) {
+  const isQuention = !!question.answers.length
+  const [solo, setsolo] = useState(1)
+
+  const checkedCheckbox = (questionId: number, answerIndex: number) => {
+    let rea = useMemo(() => {
+      if (answers[questionId] === answerIndex) {
+        return true
+      } else return false
+    }, [answers[questionId]])
+    return rea
+  }
+  const onCheckboxClick = (questionId: number, answerIndex: number) => {
+    console.log('rerender onCheckboxClick')
     dispatch(CurrentQuestion(questionId))
     dispatch(ChooseAnswer(answerIndex))
     if (answers[questionId] === answerIndex) {
       dispatch(DeleteAnswer(answerIndex))
     }
   }
-
-  const isQuention = !!question.answers.length
 
   return (
     <div className="question-block" key="{question.id}">
@@ -38,7 +49,7 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
             <div className="answer" key={index}>
               <Checkbox
                 onClick={() => onCheckboxClick(question.id, index)}
-                checked={useCheckedAnswer(question.id, index)}
+                checked={checkedCheckbox(question.id, index)}
                 disabled={isFinish}
                 className={String(index)}
               >
@@ -53,3 +64,4 @@ export const QuestionBlock = ({ question }: QuestionBlockProps) => {
     </div>
   )
 }
+export default React.memo(QuestionBlock)

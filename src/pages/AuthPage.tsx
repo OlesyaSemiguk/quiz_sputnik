@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Button, Modal } from 'antd'
 import HeaderComponents from 'components/Header/HeaderComponents'
 import { useLocation } from 'react-router-dom'
@@ -38,9 +38,11 @@ const AuthPage = () => {
     }
     setIsModalOpen(false)
   }
+
   const handleCancel = () => {
     setIsModalOpen(false)
   }
+
   const loginUser = async (email: string, password: string) => {
     loginUserRequest(email, password)
       .then(({ data }) => {
