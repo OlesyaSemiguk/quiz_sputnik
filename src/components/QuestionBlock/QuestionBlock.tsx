@@ -23,7 +23,7 @@ const QuestionBlock = ({ question }: QuestionBlockProps) => {
   const isQuention = !!question.answers.length
 
   const checkedCheckbox = (questionId: number, answerIndex: number) => {
-    let isAnswerSelected = useMemo(
+    const isAnswerSelected = useMemo(
       () => answers[questionId] === answerIndex,
       [answers[questionId]],
     )

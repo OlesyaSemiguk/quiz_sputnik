@@ -5,6 +5,7 @@ export const CHOOSE_ANSWER = 'CHECKING_ANSWER'
 export const CURRENT_QUESTION = 'CURRENT_QUESTION'
 export const FINISH_QUIZ = 'FINISH_QUIZ'
 export const DELETE_ANSWER = 'DELETE_ANSWER'
+export const RESET_QUIZ = 'RESET_QUIZ'
 
 const quizReducer = (state = defaultQuizState, action: UserAction): Quiz => {
   switch (action.type) {
@@ -14,7 +15,7 @@ const quizReducer = (state = defaultQuizState, action: UserAction): Quiz => {
         currentQuestion: action.payload,
       }
     case DELETE_ANSWER: {
-      let answersObj = state.answers
+      const answersObj = state.answers
       delete answersObj[state.currentQuestion]
 
       return {
@@ -31,6 +32,12 @@ const quizReducer = (state = defaultQuizState, action: UserAction): Quiz => {
       return {
         ...state,
         answers: { ...state.answers, [state.currentQuestion]: action.payload },
+      }
+    case RESET_QUIZ:
+      return {
+        ...state,
+        isFinish: false,
+        answers: {},
       }
     default:
       return state

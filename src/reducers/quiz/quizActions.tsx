@@ -3,6 +3,7 @@ import {
   CURRENT_QUESTION,
   DELETE_ANSWER,
   FINISH_QUIZ,
+  RESET_QUIZ,
 } from './quizReducer'
 
 export interface UserAction {
@@ -32,5 +33,10 @@ export const DeleteAnswer = (questionId: number): UserAction => {
   return {
     type: DELETE_ANSWER,
     payload: questionId,
+  }
+}
+export const ResetQuiz = () => {
+  return {
+    type: RESET_QUIZ,
   }
 }

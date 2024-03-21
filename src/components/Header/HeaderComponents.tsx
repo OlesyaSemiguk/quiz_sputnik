@@ -6,6 +6,7 @@ import { deleteRefreshToken } from 'api/cookie'
 import { logout } from 'reducers/auth/authAction'
 import React from 'react'
 import './HeaderComponents.scss'
+import { ResetQuiz } from 'reducers/quiz/quizActions'
 const { Title } = Typography
 const { Header } = Layout
 
@@ -14,6 +15,7 @@ const HeaderComponents = () => {
   const dispatch = useDispatch()
   const exitUser = () => {
     dispatch(logout())
+    dispatch(ResetQuiz())
     deleteRefreshToken()
   }
   return (
