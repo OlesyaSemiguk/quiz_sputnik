@@ -65,6 +65,19 @@ const AuthPage = () => {
   return (
     <>
       <div className="PageContent">
+        <div>
+          {isLogin ? (
+            <div className="authPage__help">
+              Для авторизации можете использовать email: user@as.as, пароль:
+              123456 <br /> Или создать свою учетную запись, вводить настояющую
+              почту для этого не обязательно
+            </div>
+          ) : (
+            <div className="authPage__help">
+              Для регистрации использовать настояющую почту для не обязательно
+            </div>
+          )}
+        </div>
         <Button
           type="primary"
           onClick={showModal}
@@ -89,7 +102,7 @@ const AuthPage = () => {
               placeholder="Введите Email"
               onChange={e => setEmail(e.target.value)}
             />
-            <p>Пароль</p>
+            <p>Пароль (минимум 6 символов)</p>
             <InputComponent
               className="auth-page"
               type="password"

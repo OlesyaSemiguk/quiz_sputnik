@@ -1,6 +1,3 @@
-import ButtonWithError from 'components/ButtonWithError'
-import ErrorBoundary from 'components/ErrorBoundary'
-
 import './stylePage.scss'
 const StartPage = () => {
   return (
@@ -10,9 +7,6 @@ const StartPage = () => {
         <a className="StartPageLink" href="#/login">
           Перейти на страницу авторизации
         </a>
-        <ErrorBoundary>
-          <ButtonWithError />
-        </ErrorBoundary>
       </div>
     </>
   )
